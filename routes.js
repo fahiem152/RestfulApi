@@ -9,7 +9,7 @@ const _routes = [
     // http://localhost:8000/api/todo
     ['todo', TodoController],
 
-    // http://localhost:8000/api
+    // http://localhost:8000/api/login
     ['login', AuthController]
 ]
 const routes = (app) => {

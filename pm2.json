@@ -1,0 +1,20 @@
+{
+    "apps": [{
+        "name": "restfulApi-userTodo",
+        "cwd": "/kuliah/Datakuliahunaki/MSIB/Sofware Enginer SI Stechoq/Backend Fundametals and Database/hello-prisma",
+        "script": "./index.js",
+        "node_args": "--expose-gc",
+        "watch": false,
+        "ignore_watch": [
+            "./node_modules",
+            "./git"
+        ],
+        "log_data_format": "YYYY-MM-DD HM:mm Z",
+        "exec_node": "cluster",
+        "instances": "1",
+        "max_memory_restart": "512M",
+        "env": {
+            "PORT": 5002
+        }
+    }]
+}

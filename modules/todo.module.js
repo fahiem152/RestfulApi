@@ -1,10 +1,17 @@
 const prisma = require('../helpers/databse');
-const {join} = require('@prisma/client/runtime');
+
 const Joi = require('joi');
 class _todo{
-    listTodo = async () => {
+    listTodo = async (body) => {
         try {
-            const list = await prisma.todo.findMany()
+            const list = await prisma.todo.findMany({
+                where: {
+                    user_id: body.user_id
+                },
+                include: {
+                    user: true
+                }
+            })
             return {
                 status: true,
                 statusCode: 201,
@@ -36,7 +43,8 @@ class _todo{
                     code: 422,
                     error: errorDetails.join(', ')
                 }
-            }const newTodo = await prisma.todo.create({
+            }
+            const newTodo = await prisma.todo.create({
                 data: {
                     user_id: body.user_id,
                     description: body.description,

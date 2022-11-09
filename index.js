@@ -12,7 +12,7 @@ const port = 8000;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
 
 // Rest Api Routes
 app.get('/', async(req, res)=> {

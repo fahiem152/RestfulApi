@@ -5,7 +5,7 @@ const response= require('../helpers/response')
 const AuthController = Router()
 
 
-// http://localhost:8000/login
+// http://localhost:8000/api/login
 AuthController.post('/', async (req,res)=>{
     const login = await m$auth.login(req.body)
     response.sendResponse(res,login)

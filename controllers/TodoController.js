@@ -1,19 +1,22 @@
 const { Router } = require('express')
 const m$todo = require('../modules/todo.module');
 const response= require('../helpers/response')
-const { userTodo } = require('../helpers/databse')
+const { userTodo } = require('../helpers/databse');
+const userSession = require('../helpers/middleware');
 const TodoController = Router()
 
 // http://localhost:8000/api/todo
-TodoController.get('/', async (req,res)=> {
-    const list = await m$todo.listTodo()
+TodoController.get('/',userSession, async (req,res)=> {
+     console.log(req.user)
+    const list = await m$todo.listTodo({user_id: req.user.id})
     response.sendResponse(res, list)
 })
 
  // http://localhost:8000/api/todo
- TodoController.post('/', async (req,res) => {
+ TodoController.post('/', userSession, async (req,res) => {
+    console.log(req.user)
     //req body berisis data yang dikirim ke client
-    const add = await m$todo.createTodo(req.body)
+    const add = await m$todo.createTodo({user_id: req.user.id, description: req.body.description})
     response.sendResponse(res, add)
 })
 
